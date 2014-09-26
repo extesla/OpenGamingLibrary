@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PolicySet name="Extesla, LLC. (Open Source)">
+  <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain">
+    <TabsToSpaces>False</TabsToSpaces>
+  </TextStylePolicy>
+  <XmlFormattingPolicy inheritsSet="Mono" inheritsScope="application/xml" scope="application/xml" />
+  <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp">
+    <PropertyBraceStyle>NextLine</PropertyBraceStyle>
+    <PropertyGetBraceStyle>NextLine</PropertyGetBraceStyle>
+    <PropertySetBraceStyle>NextLine</PropertySetBraceStyle>
+    <StatementBraceStyle>NextLine</StatementBraceStyle>
+    <ElseNewLinePlacement>NewLine</ElseNewLinePlacement>
+    <CatchNewLinePlacement>NewLine</CatchNewLinePlacement>
+    <FinallyNewLinePlacement>NewLine</FinallyNewLinePlacement>
+    <EmbeddedStatementPlacement>DoNotCare</EmbeddedStatementPlacement>
+    <BeforeMethodCallParentheses>False</BeforeMethodCallParentheses>
+    <AfterDelegateDeclarationParameterComma>True</AfterDelegateDeclarationParameterComma>
+    <NewParentheses>False</NewParentheses>
+    <SpacesBeforeBrackets>False</SpacesBeforeBrackets>
+    <AlignToFirstMethodDeclarationParameter>False</AlignToFirstMethodDeclarationParameter>
+  </CSharpFormattingPolicy>
+  <NameConventionPolicy>
+    <Rules>
+      <NamingRule>
+        <Name>Namespaces</Name>
+        <AffectedEntity>Namespace</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Types</Name>
+        <AffectedEntity>Class, Struct, Enum, Delegate</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Interfaces</Name>
+        <RequiredPrefixes>
+          <String>I</String>
+        </RequiredPrefixes>
+        <AffectedEntity>Interface</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Attributes</Name>
+        <RequiredSuffixes>
+          <String>Attribute</String>
+        </RequiredSuffixes>
+        <AffectedEntity>CustomAttributes</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Event Arguments</Name>
+        <RequiredSuffixes>
+          <String>EventArgs</String>
+        </RequiredSuffixes>
+        <AffectedEntity>CustomEventArgs</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Exceptions</Name>
+        <RequiredSuffixes>
+          <String>Exception</String>
+        </RequiredSuffixes>
+        <AffectedEntity>CustomExceptions</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Methods</Name>
+        <AffectedEntity>Methods</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Static Readonly Fields</Name>
+        <AffectedEntity>ReadonlyField</AffectedEntity>
+        <VisibilityMask>Internal, Protected, Public</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>False</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Fields (Non Private)</Name>
+        <AffectedEntity>Field</AffectedEntity>
+        <VisibilityMask>Internal, Protected, Public</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>ReadOnly Fields (Non Private)</Name>
+        <AffectedEntity>ReadonlyField</AffectedEntity>
+        <VisibilityMask>Internal, Protected, Public</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>False</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Fields (Private)</Name>
+        <AllowedPrefixes>
+          <String>_</String>
+          <String>m_</String>
+        </AllowedPrefixes>
+        <AffectedEntity>Field, ReadonlyField</AffectedEntity>
+        <VisibilityMask>Private</VisibilityMask>
+        <NamingStyle>CamelCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>False</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Static Fields (Private)</Name>
+        <AffectedEntity>Field</AffectedEntity>
+        <VisibilityMask>Private</VisibilityMask>
+        <NamingStyle>CamelCase</NamingStyle>
+        <IncludeInstanceMembers>False</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>ReadOnly Fields (Private)</Name>
+        <AllowedPrefixes>
+          <String>_</String>
+          <String>m_</String>
+        </AllowedPrefixes>
+        <AffectedEntity>ReadonlyField</AffectedEntity>
+        <VisibilityMask>Private</VisibilityMask>
+        <NamingStyle>CamelCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>False</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Constant Fields</Name>
+        <AffectedEntity>ConstantField</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Properties</Name>
+        <AffectedEntity>Property</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Events</Name>
+        <AffectedEntity>Event</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Enum Members</Name>
+        <AffectedEntity>EnumMember</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Parameters</Name>
+        <AffectedEntity>Parameter</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>CamelCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+      <NamingRule>
+        <Name>Type Parameters</Name>
+        <RequiredPrefixes>
+          <String>T</String>
+        </RequiredPrefixes>
+        <AffectedEntity>TypeParameter</AffectedEntity>
+        <VisibilityMask>VisibilityMask</VisibilityMask>
+        <NamingStyle>PascalCase</NamingStyle>
+        <IncludeInstanceMembers>True</IncludeInstanceMembers>
+        <IncludeStaticEntities>True</IncludeStaticEntities>
+      </NamingRule>
+    </Rules>
+  </NameConventionPolicy>
+  <VersionControlPolicy inheritsSet="Mono" />
+  <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-fsharp">
+    <TabsToSpaces>False</TabsToSpaces>
+    <NoTabsAfterNonTabs>True</NoTabsAfterNonTabs>
+    <EolMarker>Unix</EolMarker>
+  </TextStylePolicy>
+  <DotNetNamingPolicy>
+    <DirectoryNamespaceAssociation>PrefixedHierarchical</DirectoryNamespaceAssociation>
+    <ResourceNamePolicy>FileName</ResourceNamePolicy>
+  </DotNetNamingPolicy>
+  <TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="application/xml">
+    <TabWidth>2</TabWidth>
+    <IndentWidth>2</IndentWidth>
+  </TextStylePolicy>
+  <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp">
+    <TabsToSpaces>False</TabsToSpaces>
+  </TextStylePolicy>
+  <FSharpFormattingPolicy scope="text/x-fsharp">
+    <DefaultFormat>
+      <IndentOnTryWith>False</IndentOnTryWith>
+      <ReorderOpenDeclaration>False</ReorderOpenDeclaration>
+      <SpaceAfterComma>True</SpaceAfterComma>
+      <SpaceAfterSemicolon>True</SpaceAfterSemicolon>
+      <SpaceAroundDelimiter>True</SpaceAroundDelimiter>
+      <SpaceBeforeArgument>True</SpaceBeforeArgument>
+      <SpaceBeforeColon>True</SpaceBeforeColon>
+      <SemicolonAtEndOfLine>False</SemicolonAtEndOfLine>
+    </DefaultFormat>
+  </FSharpFormattingPolicy>
+  <StandardHeader>
+    <Text>Copyright (C) ${Year} ${CopyrightHolder}
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+ 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</Text>
+    <IncludeInNewFiles>True</IncludeInNewFiles>
+  </StandardHeader>
+</PolicySet>

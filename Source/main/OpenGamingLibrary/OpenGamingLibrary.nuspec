@@ -1,0 +1,13 @@
+<package>
+	<metadata>
+		<id>OpenGamingLibrary</id>
+		<version>0.1.0</version>
+		<authors>Extesla, LLC.</authors>
+		<licenseUrl>https://github.com/extesla/open-gaming-library/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/extesla/open-gaming-library</projectUrl>
+		<description>
+			The Open Gaming Library provides common functionality for games.
+		</description>
+		<tags>c-sharp framework game-development unity3d monogame</tags>
+	</metadata>
+</package>
