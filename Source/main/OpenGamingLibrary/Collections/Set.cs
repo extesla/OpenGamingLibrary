@@ -35,6 +35,7 @@ namespace OpenGamingLibrary.Collections
 	/// <exception cref='NotImplementedException'>
 	/// Is thrown when a requested operation is not implemented for a given type.
 	/// </exception>
+	/// <author>Sean Quinn</author>
 	public class Set<TValue> : ISet<TValue>
 	{
 		private Dictionary<TValue, object> values = new Dictionary<TValue, object>();

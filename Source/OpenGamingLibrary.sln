@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary", "main\OpenGamingLibrary\OpenGamingLibrary.csproj", "{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Test", "test\OpenGamingLibrary.Test\OpenGamingLibrary.Test.csproj", "{2ADC33A2-C1EC-4DB5-96B4-FFE46B66173C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Ioc", "main\OpenGamingLibrary.Ioc\OpenGamingLibrary.Ioc.csproj", "{5F907144-262F-475C-91E9-9315A2DA7D27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Ioc.SimpleInjector", "main\OpenGamingLibrary.Ioc.SimpleInjector\OpenGamingLibrary.Ioc.SimpleInjector.csproj", "{8E917E8F-F3EF-485B-B148-72C8ED9DB6E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Unity", "main\OpenGamingLibrary.Unity\OpenGamingLibrary.Unity.csproj", "{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Ioc.Test", "test\OpenGamingLibrary.Ioc.Test\OpenGamingLibrary.Ioc.Test.csproj", "{4D026308-0452-4A7D-BC7E-69528209E877}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGamingLibrary.Ioc.SimpleInjector.Test", "test\OpenGamingLibrary.Ioc.SimpleInjector.Test\OpenGamingLibrary.Ioc.SimpleInjector.Test.csproj", "{E254C351-1DD5-4D98-B7C2-7F610304647E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}.Debug|x86.ActiveCfg = Debug|x86
+		{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}.Debug|x86.Build.0 = Debug|x86
+		{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}.Release|x86.ActiveCfg = Release|x86
+		{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}.Release|x86.Build.0 = Release|x86
+		{2ADC33A2-C1EC-4DB5-96B4-FFE46B66173C}.Debug|x86.ActiveCfg = Debug|x86
+		{2ADC33A2-C1EC-4DB5-96B4-FFE46B66173C}.Debug|x86.Build.0 = Debug|x86
+		{2ADC33A2-C1EC-4DB5-96B4-FFE46B66173C}.Release|x86.ActiveCfg = Release|x86
+		{2ADC33A2-C1EC-4DB5-96B4-FFE46B66173C}.Release|x86.Build.0 = Release|x86
+		{4D026308-0452-4A7D-BC7E-69528209E877}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4D026308-0452-4A7D-BC7E-69528209E877}.Debug|x86.Build.0 = Debug|Any CPU
+		{4D026308-0452-4A7D-BC7E-69528209E877}.Release|x86.ActiveCfg = Release|Any CPU
+		{4D026308-0452-4A7D-BC7E-69528209E877}.Release|x86.Build.0 = Release|Any CPU
+		{5F907144-262F-475C-91E9-9315A2DA7D27}.Debug|x86.ActiveCfg = Debug|x86
+		{5F907144-262F-475C-91E9-9315A2DA7D27}.Debug|x86.Build.0 = Debug|x86
+		{5F907144-262F-475C-91E9-9315A2DA7D27}.Release|x86.ActiveCfg = Release|x86
+		{5F907144-262F-475C-91E9-9315A2DA7D27}.Release|x86.Build.0 = Release|x86
+		{8E917E8F-F3EF-485B-B148-72C8ED9DB6E6}.Debug|x86.ActiveCfg = Debug|x86
+		{8E917E8F-F3EF-485B-B148-72C8ED9DB6E6}.Debug|x86.Build.0 = Debug|x86
+		{8E917E8F-F3EF-485B-B148-72C8ED9DB6E6}.Release|x86.ActiveCfg = Release|x86
+		{8E917E8F-F3EF-485B-B148-72C8ED9DB6E6}.Release|x86.Build.0 = Release|x86
+		{E254C351-1DD5-4D98-B7C2-7F610304647E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E254C351-1DD5-4D98-B7C2-7F610304647E}.Debug|x86.Build.0 = Debug|Any CPU
+		{E254C351-1DD5-4D98-B7C2-7F610304647E}.Release|x86.ActiveCfg = Release|Any CPU
+		{E254C351-1DD5-4D98-B7C2-7F610304647E}.Release|x86.Build.0 = Release|Any CPU
+		{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}.Debug|x86.ActiveCfg = Debug|x86
+		{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}.Debug|x86.Build.0 = Debug|x86
+		{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}.Release|x86.ActiveCfg = Release|x86
+		{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = main\OpenGamingLibrary\OpenGamingLibrary.csproj
+	EndGlobalSection
+EndGlobal

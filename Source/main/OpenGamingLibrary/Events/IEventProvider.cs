@@ -20,25 +20,46 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 
-namespace OpenGamingLibrary
-{
+namespace OpenGamingLibrary.Events {
 
 	/// <summary>
-	/// An interface which identifies an object as being loggable.
+	/// An event provider is any object that encompasses one or more events that
+	/// can be raised. Event providers are registered with an
+	/// <see cref="IEventRegistry" /> and fired from the same event dispatcher.
 	/// </summary>
-	/// <remarks>>
-	/// Allows a class to be marked as "loggable" using the specific logging
-	/// aparatus specified in the generic argument.
-	/// </remarks>
-	/// <author name="Sean Quinn" />
-	public interface ILoggable<TLog>
+	/// <author>Sean Quinn</author>
+	public interface IEventProvider
 	{
 
 		/// <summary>
-		/// Gets the logging device for this object.
+		/// Gets the type of the event.
 		/// </summary>
-		/// <value>The logging device.</value>
-		TLog Log { get; }
+		/// <value>The type of the event.</value>
+		Type EventType { get; }
+
+		/// <summary>
+		/// Adds an event handler to the event provider.
+		/// </summary>
+		/// <param name='obj'>
+		/// The event handler.
+		/// </param>
+		void Add(object obj);
+
+		/// <summary>
+		/// Returns the underlying event handler.
+		/// </summary>
+		/// <returns>
+		/// The underlying event handler.
+		/// </returns>
+		object GetEventHandler();
+
+		/// <summary>
+		/// Remove an event handler from the event provider.
+		/// </summary>
+		/// <param name='obj'>
+		/// The event handler.
+		/// </param>
+		void Remove(object obj);
 	}
 }
 

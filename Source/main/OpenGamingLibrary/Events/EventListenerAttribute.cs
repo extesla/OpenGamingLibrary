@@ -1,4 +1,4 @@
-// Copyright (C) 2014 Extesla, LLC.
+﻿// Copyright (C) 2014 Extesla, LLC.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -7,10 +7,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -20,25 +20,20 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 
-namespace OpenGamingLibrary
+namespace OpenGamingLibrary.Events
 {
-
 	/// <summary>
-	/// An interface which identifies an object as being loggable.
+	/// Marks an interface as being an event listener.
 	/// </summary>
-	/// <remarks>>
-	/// Allows a class to be marked as "loggable" using the specific logging
-	/// aparatus specified in the generic argument.
-	/// </remarks>
-	/// <author name="Sean Quinn" />
-	public interface ILoggable<TLog>
+	/// <author>Sean Quinn</author>
+	[AttributeUsage(AttributeTargets.Interface)]
+	public sealed class EventListenerAttribute : Attribute
 	{
-
 		/// <summary>
-		/// Gets the logging device for this object.
+		/// Creates a new instance of the
+		/// <see cref="OpenGamingLibrary.Events.EventListenerAttribute"/> class.
 		/// </summary>
-		/// <value>The logging device.</value>
-		TLog Log { get; }
+		public EventListenerAttribute() {}
 	}
 }
 

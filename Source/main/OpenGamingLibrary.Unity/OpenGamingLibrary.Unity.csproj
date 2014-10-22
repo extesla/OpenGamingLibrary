@@ -3,12 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</ProjectGuid>
+    <ProjectGuid>{0C18F4CD-3B6E-481B-A0D8-74DFB6160559}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>OpenGamingLibrary</RootNamespace>
-    <AssemblyName>OpenGamingLibrary</AssemblyName>
+    <RootNamespace>OpenGamingLibrary.Unity</RootNamespace>
+    <AssemblyName>OpenGamingLibrary.Unity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <Description>Common library for game development.</Description>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
@@ -16,7 +15,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Build\OpenGamingLibrary\Debug</OutputPath>
+    <OutputPath>..\..\..\Build\OpenGamingLibrary.Unity\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Build\OpenGamingLibrary\Release</OutputPath>
+    <OutputPath>..\..\..\Build\OpenGamingLibrary.Unity\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -34,37 +33,34 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="ILoggable.cs" />
-    <Compile Include="IUniquelyIdentifiable.cs" />
-    <Compile Include="Collections\ISet.cs" />
-    <Compile Include="Collections\Set.cs" />
-    <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="UnityContext.cs" />
+    <Compile Include="ComposableUnityContext.cs" />
+    <Compile Include="ContainerAwareBehaviour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripting\EventSubscriberScript.cs" />
-    <Compile Include="Scripting\IScript.cs" />
-    <Compile Include="Scripting\ScriptRegistry.cs" />
-    <Compile Include="Events\EventProvider.cs" />
-    <Compile Include="Events\IEventMessage.cs" />
-    <Compile Include="Events\IEventProvider.cs" />
-    <Compile Include="ConfigurationAttribute.cs" />
-    <Compile Include="ComponentAttribute.cs" />
-    <Compile Include="Events\IEventRegistry.cs" />
-    <Compile Include="Events\EventRegistry.cs" />
-    <Compile Include="IContext.cs" />
-    <Compile Include="IContextAware.cs" />
-    <Compile Include="Context.Support\ConfigurationProcessor.cs" />
-    <Compile Include="Context.Support\ContextRegistry.cs" />
-    <Compile Include="ContextException.cs" />
-    <Compile Include="Events\EventListenerAttribute.cs" />
-    <Compile Include="Logging\Logger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\Library\repo\Unity\net20\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Library\repo\Unity\net20\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net35\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net35\Common.Logging.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
         <Policies>
-          <TextStylePolicy TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
-          <XmlFormattingPolicy inheritsSet="Mono" inheritsScope="application/xml" scope="application/xml" />
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileName" />
+          <TextStylePolicy TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
           <CSharpFormattingPolicy PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" StatementBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" EmbeddedStatementPlacement="DoNotCare" BeforeMethodCallParentheses="False" AfterDelegateDeclarationParameterComma="True" NewParentheses="False" SpacesBeforeBrackets="False" AlignToFirstMethodDeclarationParameter="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+          <TextStylePolicy TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+          <StandardHeader Text="Copyright (C) ${Year} ${CopyrightHolder}&#xA;&#xA;Permission is hereby granted, free of charge, to any person obtaining&#xA;a copy of this software and associated documentation files (the&#xA;&quot;Software&quot;), to deal in the Software without restriction, including&#xA;without limitation the rights to use, copy, modify, merge, publish,&#xA;distribute, sublicense, and/or sell copies of the Software, and to&#xA;permit persons to whom the Software is furnished to do so, subject to&#xA;the following conditions:&#xA; &#xA;The above copyright notice and this permission notice shall be&#xA;included in all copies or substantial portions of the Software.&#xA;&#xA;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,&#xA;EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF&#xA;MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&#xA;NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE&#xA;LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION&#xA;OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION&#xA;WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." IncludeInNewFiles="True" />
           <NameConventionPolicy>
             <Rules>
               <NamingRule Name="Namespaces" AffectedEntity="Namespace" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
@@ -118,35 +114,22 @@
               </NamingRule>
             </Rules>
           </NameConventionPolicy>
-          <VersionControlPolicy inheritsSet="Mono" />
-          <TextStylePolicy TabsToSpaces="False" NoTabsAfterNonTabs="True" EolMarker="Unix" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-fsharp" />
-          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileName" />
-          <TextStylePolicy TabWidth="2" IndentWidth="2" inheritsSet="Mono" inheritsScope="text/plain" scope="application/xml" />
-          <TextStylePolicy TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
-          <FSharpFormattingPolicy scope="text/x-fsharp">
-            <DefaultFormat IndentOnTryWith="False" ReorderOpenDeclaration="False" SpaceAfterComma="True" SpaceAfterSemicolon="True" SpaceAroundDelimiter="True" SpaceBeforeArgument="True" SpaceBeforeColon="True" SemicolonAtEndOfLine="False" />
-          </FSharpFormattingPolicy>
-          <StandardHeader Text="Copyright (C) ${Year} ${CopyrightHolder}&#xA;&#xA;Permission is hereby granted, free of charge, to any person obtaining&#xA;a copy of this software and associated documentation files (the&#xA;&quot;Software&quot;), to deal in the Software without restriction, including&#xA;without limitation the rights to use, copy, modify, merge, publish,&#xA;distribute, sublicense, and/or sell copies of the Software, and to&#xA;permit persons to whom the Software is furnished to do so, subject to&#xA;the following conditions:&#xA; &#xA;The above copyright notice and this permission notice shall be&#xA;included in all copies or substantial portions of the Software.&#xA;&#xA;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,&#xA;EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF&#xA;MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&#xA;NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE&#xA;LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION&#xA;OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION&#xA;WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." IncludeInNewFiles="True" />
         </Policies>
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="Collections\" />
-    <Folder Include="Utils\" />
     <Folder Include="Properties\" />
-    <Folder Include="Scripting\" />
-    <Folder Include="Events\" />
-    <Folder Include="Context.Support\" />
-    <Folder Include="Logging\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging.Core">
-      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net35\Common.Logging.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net35\Common.Logging.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
+      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
+      <Name>OpenGamingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenGamingLibrary.Ioc\OpenGamingLibrary.Ioc.csproj">
+      <Project>{5F907144-262F-475C-91E9-9315A2DA7D27}</Project>
+      <Name>OpenGamingLibrary.Ioc</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

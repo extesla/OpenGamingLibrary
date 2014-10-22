@@ -1,4 +1,4 @@
-// Copyright (C) 2014 Extesla, LLC.
+﻿// Copyright (C) 2014 Extesla, LLC.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -7,10 +7,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -20,25 +20,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 
-namespace OpenGamingLibrary
+namespace OpenGamingLibrary.Ioc
 {
 
 	/// <summary>
-	/// An interface which identifies an object as being loggable.
 	/// </summary>
-	/// <remarks>>
-	/// Allows a class to be marked as "loggable" using the specific logging
-	/// aparatus specified in the generic argument.
+	/// <remarks>
+	/// The service container is designed to be a generic contract for all
+	/// possible inversion of control containers, allowing systems to be
+	/// designed and developed against a common interface.
 	/// </remarks>
-	/// <author name="Sean Quinn" />
-	public interface ILoggable<TLog>
+	/// <author>Sean Quinn</author>
+	public interface IServiceContainer : IServiceResolver, IServiceRegistry, IDisposable
 	{
-
-		/// <summary>
-		/// Gets the logging device for this object.
-		/// </summary>
-		/// <value>The logging device.</value>
-		TLog Log { get; }
 	}
 }
 

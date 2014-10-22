@@ -3,12 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</ProjectGuid>
+    <ProjectGuid>{5F907144-262F-475C-91E9-9315A2DA7D27}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>OpenGamingLibrary</RootNamespace>
-    <AssemblyName>OpenGamingLibrary</AssemblyName>
+    <RootNamespace>OpenGamingLibrary.Ioc</RootNamespace>
+    <AssemblyName>OpenGamingLibrary.Ioc</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <Description>Common library for game development.</Description>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
@@ -16,7 +15,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Build\OpenGamingLibrary\Debug</OutputPath>
+    <OutputPath>..\..\..\Build\OpenGamingLibrary.Ioc\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Build\OpenGamingLibrary\Release</OutputPath>
+    <OutputPath>..\..\..\Build\OpenGamingLibrary.Ioc\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -34,29 +33,20 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="ILoggable.cs" />
-    <Compile Include="IUniquelyIdentifiable.cs" />
-    <Compile Include="Collections\ISet.cs" />
-    <Compile Include="Collections\Set.cs" />
-    <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="InjectAttribute.cs" />
+    <Compile Include="ICompositionRoot.cs" />
+    <Compile Include="IServiceRegistry.cs" />
+    <Compile Include="IServiceContainerAdapter.cs" />
+    <Compile Include="IServiceContainer.cs" />
+    <Compile Include="IContainerAware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripting\EventSubscriberScript.cs" />
-    <Compile Include="Scripting\IScript.cs" />
-    <Compile Include="Scripting\ScriptRegistry.cs" />
-    <Compile Include="Events\EventProvider.cs" />
-    <Compile Include="Events\IEventMessage.cs" />
-    <Compile Include="Events\IEventProvider.cs" />
-    <Compile Include="ConfigurationAttribute.cs" />
-    <Compile Include="ComponentAttribute.cs" />
-    <Compile Include="Events\IEventRegistry.cs" />
-    <Compile Include="Events\EventRegistry.cs" />
-    <Compile Include="IContext.cs" />
-    <Compile Include="IContextAware.cs" />
-    <Compile Include="Context.Support\ConfigurationProcessor.cs" />
-    <Compile Include="Context.Support\ContextRegistry.cs" />
-    <Compile Include="ContextException.cs" />
-    <Compile Include="Events\EventListenerAttribute.cs" />
-    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="RegisteredServiceContainer.cs" />
+    <Compile Include="IInvocation.cs" />
+    <Compile Include="NoOpServiceContainer.cs" />
+    <Compile Include="Filters\ContextAwareFilter.cs" />
+    <Compile Include="IFilter.cs" />
+    <Compile Include="Filters\ContainerAwareFilter.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -132,13 +122,15 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="Collections\" />
-    <Folder Include="Utils\" />
     <Folder Include="Properties\" />
-    <Folder Include="Scripting\" />
-    <Folder Include="Events\" />
-    <Folder Include="Context.Support\" />
-    <Folder Include="Logging\" />
+    <Folder Include="Attributes\" />
+    <Folder Include="Filters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
+      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
+      <Name>OpenGamingLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Common.Logging.Core">

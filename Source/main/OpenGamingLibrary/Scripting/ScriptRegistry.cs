@@ -1,21 +1,57 @@
-﻿// Copyright 2014 Extesla, LLC. All rights reserved.
+﻿// Copyright (C) 2014 Extesla, LLC.
 //
-// It is illegal to use, reproduce or distribute any part of this
-// Intellectual Property without prior written authorization from
-// Extesla, LLC.
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
+using Common.Logging;
 
 namespace OpenGamingLibrary.Scripting
 {
+
+	/// <summary>
+	/// Script registry.
+	/// </summary>
 	public class ScriptRegistry : IDisposable
 	{
 
 		#region Fields
+		/// <summary>
+		/// Dictionary of scripts by type.
+		/// </summary>
 		private readonly Dictionary<Type, IScript> values = new Dictionary<Type, IScript>();
+
+		/// <summary>
+		/// The log.
+		/// </summary>
+		private readonly ILog log = LogManager.GetCurrentClassLogger();
 		#endregion
 
 		#region Properties
+		/// <inheritdoc />
+		/// <remarks>
+		/// </remarks>
+		public ILog Log
+		{
+			get { return log; }
+		}
+
 		/// <summary>
 		/// Gets or sets the <see cref="OpenGamingLibrary.Scripting.ScriptRegistry"/> at the specified index.
 		/// </summary>
@@ -67,6 +103,10 @@ namespace OpenGamingLibrary.Scripting
 		{
 		}
 
+		/// <summary>
+		/// Add the specified item.
+		/// </summary>
+		/// <param name="item">Item.</param>
 		public void Add (IScript item)
 		{
 			values.Add(item.GetType(), item);

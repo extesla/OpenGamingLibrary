@@ -20,25 +20,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 
-namespace OpenGamingLibrary
-{
+namespace OpenGamingLibrary.Events {
 
 	/// <summary>
-	/// An interface which identifies an object as being loggable.
+	/// A message which an <see cref="OpenGamingLibrary.Events.IEventProvider" />
+	/// can interact with.
 	/// </summary>
-	/// <remarks>>
-	/// Allows a class to be marked as "loggable" using the specific logging
-	/// aparatus specified in the generic argument.
-	/// </remarks>
-	/// <author name="Sean Quinn" />
-	public interface ILoggable<TLog>
+	/// <author>Sean Quinn</author>
+	public interface IEventMessage
 	{
-
-		/// <summary>
-		/// Gets the logging device for this object.
-		/// </summary>
-		/// <value>The logging device.</value>
-		TLog Log { get; }
 	}
 }
 

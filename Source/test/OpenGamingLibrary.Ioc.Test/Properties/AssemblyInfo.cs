@@ -1,4 +1,4 @@
-// Copyright (C) 2014 Extesla, LLC.
+﻿// Copyright (C) 2014 Extesla, LLC.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -7,10 +7,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -18,27 +18,30 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
-namespace OpenGamingLibrary
-{
+// Information about this assembly is defined by the following attributes.
+// Change them to the values specific to your project.
 
-	/// <summary>
-	/// An interface which identifies an object as being loggable.
-	/// </summary>
-	/// <remarks>>
-	/// Allows a class to be marked as "loggable" using the specific logging
-	/// aparatus specified in the generic argument.
-	/// </remarks>
-	/// <author name="Sean Quinn" />
-	public interface ILoggable<TLog>
-	{
+[assembly: AssemblyTitle("OpenGamingLibrary.Ioc.Test")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("Extesla, LLC.")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
-		/// <summary>
-		/// Gets the logging device for this object.
-		/// </summary>
-		/// <value>The logging device.</value>
-		TLog Log { get; }
-	}
-}
+// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
+// The form "{Major}.{Minor}.*" will automatically update the build and revision,
+// and "{Major}.{Minor}.{Build}.*" will update just the revision.
+
+[assembly: AssemblyVersion("0.1.0.*")]
+
+// The following attributes are used to specify the signing key for the assembly,
+// if desired. See the Mono documentation for more information about signing.
+
+//[assembly: AssemblyDelaySign(false)]
+//[assembly: AssemblyKeyFile("")]
 

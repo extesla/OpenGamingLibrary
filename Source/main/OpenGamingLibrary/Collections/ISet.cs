@@ -28,6 +28,7 @@ namespace OpenGamingLibrary.Collections
 	/// <summary>
 	/// The interface defining a set collection.
 	/// </summary>
+	/// <author>Sean Quinn</author>
 	public interface ISet<TValue> : ICollection<TValue>
 	{
 	}

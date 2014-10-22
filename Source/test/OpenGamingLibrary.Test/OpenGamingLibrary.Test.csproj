@@ -8,6 +8,8 @@
     <RootNamespace>OpenGamingLibrary.Test</RootNamespace>
     <AssemblyName>OpenGamingLibrary.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,20 +34,27 @@
   <ItemGroup>
     <Folder Include="_assets\" />
     <Folder Include="Utils\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Utils\FileUtilsTest.cs" />
+    <Compile Include="Events\EventRegistryTest.cs" />
+    <Compile Include="Events\EventBenchmarkTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
+    <ProjectReference Include="..\..\main\OpenGamingLibrary\OpenGamingLibrary.csproj">
       <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
       <Name>OpenGamingLibrary</Name>
     </ProjectReference>
