@@ -8,8 +8,6 @@
     <RootNamespace>OpenGamingLibrary.Test</RootNamespace>
     <AssemblyName>OpenGamingLibrary.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,12 +52,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\main\OpenGamingLibrary\OpenGamingLibrary.csproj">
-      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
-      <Name>OpenGamingLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="_assets\foo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -73,4 +65,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\..\main\OpenGamingLibrary\OpenGamingLibrary.csproj">
+      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
+      <Name>OpenGamingLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

@@ -8,8 +8,6 @@
     <RootNamespace>OpenGamingLibrary.Unity</RootNamespace>
     <AssemblyName>OpenGamingLibrary.Unity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,11 +43,11 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\Library\repo\Unity\net20\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core">
-      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net35\Common.Logging.Core.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\Library\repo\Unity\net20\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net35\Common.Logging.dll</HintPath>
+      <HintPath>..\..\packages\Common.Logging.2.3.1\lib\net35\Common.Logging.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ProjectExtensions>
@@ -120,15 +118,16 @@
   </ProjectExtensions>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
-      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
-      <Name>OpenGamingLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenGamingLibrary.Ioc\OpenGamingLibrary.Ioc.csproj">
       <Project>{5F907144-262F-475C-91E9-9315A2DA7D27}</Project>
       <Name>OpenGamingLibrary.Ioc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
+      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
+      <Name>OpenGamingLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

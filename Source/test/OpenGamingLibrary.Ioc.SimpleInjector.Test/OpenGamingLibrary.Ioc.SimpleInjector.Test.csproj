@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E254C351-1DD5-4D98-B7C2-7F610304647E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>OpenGamingLibrary.Ioc.SimpleInjector.Test</RootNamespace>
@@ -44,10 +42,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\main\OpenGamingLibrary\OpenGamingLibrary.csproj">
-      <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
-      <Name>OpenGamingLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\main\OpenGamingLibrary.Ioc\OpenGamingLibrary.Ioc.csproj">
       <Project>{5F907144-262F-475C-91E9-9315A2DA7D27}</Project>
       <Name>OpenGamingLibrary.Ioc</Name>
