@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09383977-71FE-4F77-AF26-AEB098664E38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OpenGamingLibrary.Numerics</RootNamespace>
+    <AssemblyName>OpenGamingLibrary.Numerics</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Converters\ClassicStringConverter.cs" />
+    <Compile Include="Converters\FastStringConverter.cs" />
+    <Compile Include="Converters\IStringConverter.cs" />
+    <Compile Include="Converters\Pow2StringConverter.cs" />
+    <Compile Include="Converters\StringConverterBase.cs" />
+    <Compile Include="Converters\StringConvertManager.cs" />
+    <Compile Include="Dividers\AutoNewtonDivider.cs" />
+    <Compile Include="Dividers\ClassicDivider.cs" />
+    <Compile Include="Dividers\DivideManager.cs" />
+    <Compile Include="Dividers\DividerBase.cs" />
+    <Compile Include="Multipliers\AutoFhtMultiplier.cs" />
+    <Compile Include="Multipliers\ClassicMultiplier.cs" />
+    <Compile Include="Multipliers\IMultiplier.cs" />
+    <Compile Include="Multipliers\MultiplierBase.cs" />
+    <Compile Include="Multipliers\MultiplyManager.cs" />
+    <Compile Include="OpHelpers\DigitHelper.cs" />
+    <Compile Include="OpHelpers\DigitOpHelper.cs" />
+    <Compile Include="OpHelpers\FhtHelper.cs" />
+    <Compile Include="OpHelpers\NewtonHelper.cs" />
+    <Compile Include="OpHelpers\OpHelper.cs" />
+    <Compile Include="OpHelpers\StrRepHelper.cs" />
+    <Compile Include="Parsers\ClassicParser.cs" />
+    <Compile Include="Parsers\FastParser.cs" />
+    <Compile Include="Parsers\IParser.cs" />
+    <Compile Include="Parsers\ParseManager.cs" />
+    <Compile Include="Parsers\ParserBase.cs" />
+    <Compile Include="Parsers\Pow2Parser.cs" />
+    <Compile Include="Utils\ArrayPool.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\FhtMultiplicationException.cs" />
+    <Compile Include="Utils\Strings.Designer.cs" />
+    <Compile Include="BigInteger.cs" />
+    <Compile Include="Bits.cs" />
+    <Compile Include="DigitConverter.cs" />
+    <Compile Include="Dividers\IDivider.cs" />
+    <Compile Include="Settings\BigIntegerGlobalSettings.cs" />
+    <Compile Include="ToStringMode.cs" />
+    <Compile Include="ParseMode.cs" />
+    <Compile Include="DivideMode.cs" />
+    <Compile Include="MultiplyMode.cs" />
+    <Compile Include="DivModResultFlags.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Dividers\" />
+    <Folder Include="Multipliers\" />
+    <Folder Include="OpHelpers\" />
+    <Folder Include="Parsers\" />
+    <Folder Include="Settings\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Utils\Strings.resx" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileName" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
