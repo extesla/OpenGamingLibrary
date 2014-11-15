@@ -1,4 +1,3 @@
-#region License
 // Copyright (c) 2007 James Newton-King; 2014 Extesla, LLC.
 //
 // Permission is hereby granted, free of charge, to any person
@@ -21,22 +20,19 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
-#endregion
 
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Numerics;
-using System.Reflection;
 using System.Collections;
 using System.Globalization;
+#if NET40
+using System.Numerics;
+#endif
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
-#if NET20
-using OpenGamingLibrary.Json.Utilities.LinqBridge;
-#else
 using System.Linq;
-#endif
 using OpenGamingLibrary.Json.Serialization;
 
 namespace OpenGamingLibrary.Json.Utilities
@@ -939,16 +935,14 @@ namespace OpenGamingLibrary.Json.Utilities
                     return 0m;
                 case PrimitiveTypeCode.DateTime:
                     return new DateTime();
-#if !(PORTABLE || PORTABLE40 || NET35 || NET20)
+#if NET40
                 case PrimitiveTypeCode.BigInteger:
                     return new BigInteger();
 #endif
                 case PrimitiveTypeCode.Guid:
                     return new Guid();
-#if !NET20
                 case PrimitiveTypeCode.DateTimeOffset:
                     return new DateTimeOffset();
-#endif
             }
 
             if (IsNullable(type))

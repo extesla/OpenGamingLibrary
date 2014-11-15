@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,7 +34,6 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data.Linq" />
@@ -64,8 +63,6 @@
     <Compile Include="Bson\BsonWriterTests.cs" />
     <Compile Include="Converters\BinaryConverterTests.cs" />
     <Compile Include="Converters\CustomCreationConverterTests.cs" />
-    <Compile Include="Converters\DataSetConverterTests.cs" />
-    <Compile Include="Converters\DataTableConverterTests.cs" />
     <Compile Include="Converters\IsoDateTimeConverterTests.cs" />
     <Compile Include="Converters\JavaScriptDateTimeConverterTests.cs" />
     <Compile Include="Converters\JsonValueConverterTests.cs" />
@@ -107,7 +104,6 @@
     <Compile Include="TestObjects\ConverableMembers.cs" />
     <Compile Include="TestObjects\ConverterPrecedenceClass.cs" />
     <Compile Include="TestObjects\ConverterPrecedenceClassConverter.cs" />
-    <Compile Include="TestObjects\CustomerDataSet.cs" />
     <Compile Include="TestObjects\DataContractSerializationAttributesClass.cs" />
     <Compile Include="TestObjects\DateTimeErrorObjectCollection.cs" />
     <Compile Include="TestObjects\DateTimeTestClass.cs" />
@@ -245,13 +241,6 @@
     <Compile Include="Schema\JsonSchemaNodeTests.cs" />
     <Compile Include="Schema\JsonSchemaSpecTests.cs" />
     <Compile Include="Schema\JsonSchemaTests.cs" />
-    <Compile Include="LinqToSql\Department.cs" />
-    <Compile Include="LinqToSql\DepartmentConverter.cs" />
-    <Compile Include="LinqToSql\GuidByteArrayConverter.cs" />
-    <Compile Include="LinqToSql\LinqToSqlClasses.designer.cs" />
-    <Compile Include="LinqToSql\LinqToSqlClassesSerializationTests.cs" />
-    <Compile Include="LinqToSql\Person.cs" />
-    <Compile Include="LinqToSql\Role.cs" />
     <Compile Include="Linq\JArrayTests.cs" />
     <Compile Include="Linq\JConstructorTests.cs" />
     <Compile Include="Linq\JObjectTests.cs" />
@@ -335,7 +324,6 @@
     <Compile Include="Documentation\Samples\Serializer\DeserializeCollection.cs" />
     <Compile Include="Documentation\Samples\Serializer\DeserializeConstructorHandling.cs" />
     <Compile Include="Documentation\Samples\Serializer\DeserializeCustomCreationConverter.cs" />
-    <Compile Include="Documentation\Samples\Serializer\DeserializeDataSet.cs" />
     <Compile Include="Documentation\Samples\Serializer\DeserializeDictionary.cs" />
     <Compile Include="Documentation\Samples\Serializer\DeserializeMissingMemberHandling.cs" />
     <Compile Include="Documentation\Samples\Serializer\DeserializeObject.cs" />
@@ -362,7 +350,6 @@
     <Compile Include="Documentation\Samples\Serializer\SerializeCollection.cs" />
     <Compile Include="Documentation\Samples\Serializer\SerializeConditionalProperty.cs" />
     <Compile Include="Documentation\Samples\Serializer\SerializeContractResolver.cs" />
-    <Compile Include="Documentation\Samples\Serializer\SerializeDataSet.cs" />
     <Compile Include="Documentation\Samples\Serializer\SerializeDateFormatHandling.cs" />
     <Compile Include="Documentation\Samples\Serializer\SerializeDateTimeZoneHandling.cs" />
     <Compile Include="Documentation\Samples\Serializer\SerializeDictionary.cs" />
@@ -381,20 +368,7 @@
     <Compile Include="Utilities\TestReflectionUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Bson\" />
-    <Folder Include="Converters\" />
-    <Folder Include="Utilities\" />
-    <Folder Include="TestObjects\" />
-    <Folder Include="Serialization\" />
-    <Folder Include="Schema\" />
-    <Folder Include="LinqToSql\" />
-    <Folder Include="Linq\" />
-    <Folder Include="Linq.ComponentModel\" />
-    <Folder Include="Linq.JsonPath\" />
-    <Folder Include="Images\" />
-    <Folder Include="Documentation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Schema\Specs\additionalItems.json" />
     <None Include="Schema\Specs\additionalProperties.json" />
@@ -417,8 +391,6 @@
     <None Include="Schema\Specs\required.json" />
     <None Include="Schema\Specs\type.json" />
     <None Include="Schema\Specs\uniqueItems.json" />
-    <None Include="LinqToSql\LinqToSqlClasses.dbml" />
-    <None Include="LinqToSql\LinqToSqlClasses.dbml.layout" />
     <None Include="Images\UnitTestLogo.png" />
     <None Include="Images\UnitTestSmallLogo.png" />
     <None Include="Images\UnitTestSplashScreen.png" />
@@ -438,10 +410,6 @@
       <Project>{2B2F7E35-B753-4433-BDA7-85543BD3A653}</Project>
       <Name>OpenGamingLibrary.Xml.Linq</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\main\OpenGamingLibrary.Numerics\OpenGamingLibrary.Numerics.csproj">
-      <Project>{09383977-71FE-4F77-AF26-AEB098664E38}</Project>
-      <Name>OpenGamingLibrary.Numerics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\main\OpenGamingLibrary.Xunit.Extensions\OpenGamingLibrary.Xunit.Extensions.csproj">
       <Project>{48CA352A-1165-4F37-A74A-FDD8FD6D4F96}</Project>
       <Name>OpenGamingLibrary.Xunit.Extensions</Name>
@@ -450,6 +418,9 @@
       <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>
       <Name>OpenGamingLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

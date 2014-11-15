@@ -23,9 +23,11 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Json.Utilities;
 using System.Globalization;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
+using OpenGamingLibrary.Json.Utilities;
 
 namespace OpenGamingLibrary.Json.Linq
 {
@@ -205,7 +207,7 @@ namespace OpenGamingLibrary.Json.Linq
 			get { return false; }
 		}
 
-		#if !(NET20 || NET35 || PORTABLE40 || PORTABLE)
+#if NET40
 		private static int CompareBigInteger (BigInteger i1, object i2)
 		{
 			int result = i1.CompareTo(ConvertUtils.ToBigInteger(i2));
@@ -226,7 +228,7 @@ namespace OpenGamingLibrary.Json.Linq
 
 			return result;
 		}
-		#endif
+#endif
 
 		internal static int Compare (JTokenType valueType, object objA, object objB)
 		{
@@ -239,7 +241,7 @@ namespace OpenGamingLibrary.Json.Linq
 
 			switch (valueType) {
 			case JTokenType.Integer:
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE)
+#if NET40
 				if (objA is BigInteger)
 					return CompareBigInteger((BigInteger)objA, objB);
 				if (objB is BigInteger)
@@ -252,7 +254,7 @@ namespace OpenGamingLibrary.Json.Linq
 				else
 					return Convert.ToInt64(objA, CultureInfo.InvariantCulture).CompareTo(Convert.ToInt64(objB, CultureInfo.InvariantCulture));
 			case JTokenType.Float:
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE)
+#if NET40
 				if (objA is BigInteger)
 					return CompareBigInteger((BigInteger)objA, objB);
 				if (objB is BigInteger)
@@ -272,21 +274,16 @@ namespace OpenGamingLibrary.Json.Linq
 
 				return b1.CompareTo(b2);
 			case JTokenType.Date:
-#if !NET20
 				if (objA is DateTime) {
-#endif
 					DateTime date1 = (DateTime)objA;
 					DateTime date2;
 
-#if !NET20
 					if (objB is DateTimeOffset)
 						date2 = ((DateTimeOffset)objB).DateTime;
 					else
-#endif
-                            date2 = Convert.ToDateTime(objB, CultureInfo.InvariantCulture);
+                        date2 = Convert.ToDateTime(objB, CultureInfo.InvariantCulture);
 
 					return date1.CompareTo(date2);
-#if !NET20
 				}
 				else {
 					DateTimeOffset date1 = (DateTimeOffset)objA;
@@ -299,7 +296,6 @@ namespace OpenGamingLibrary.Json.Linq
 
 					return date1.CompareTo(date2);
 				}
-#endif
 			case JTokenType.Bytes:
 				if (!(objB is byte[]))
 					throw new ArgumentException("Object must be of type byte[].");
@@ -400,10 +396,8 @@ namespace OpenGamingLibrary.Json.Linq
 		{
 			if (value == null)
 				return JTokenType.Null;
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
             else if (value == DBNull.Value)
 				return JTokenType.Null;
-#endif
             else if (value is string)
 				return GetStringValueType(current);
 			else if (value is long || value is int || value is short || value is sbyte
@@ -411,7 +405,7 @@ namespace OpenGamingLibrary.Json.Linq
 				return JTokenType.Integer;
 			else if (value is Enum)
 				return JTokenType.Integer;
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE)
+#if NET40
             else if (value is BigInteger)
 				return JTokenType.Integer;
 #endif
@@ -419,10 +413,8 @@ namespace OpenGamingLibrary.Json.Linq
 				return JTokenType.Float;
 			else if (value is DateTime)
 				return JTokenType.Date;
-#if !NET20
             else if (value is DateTimeOffset)
 				return JTokenType.Date;
-#endif
             else if (value is byte[])
 				return JTokenType.Bytes;
 			else if (value is bool)
@@ -506,7 +498,7 @@ namespace OpenGamingLibrary.Json.Linq
 				writer.WriteUndefined();
 				return;
 			case JTokenType.Integer:
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE)
+#if NET40
 				if (_value is BigInteger)
 					writer.WriteValue((BigInteger)_value);
 				else
@@ -530,11 +522,9 @@ namespace OpenGamingLibrary.Json.Linq
 				writer.WriteValue(Convert.ToBoolean(_value, CultureInfo.InvariantCulture));
 				return;
 			case JTokenType.Date:
-#if !NET20
 				if (_value is DateTimeOffset)
 					writer.WriteValue((DateTimeOffset)_value);
 				else
-#endif
                         writer.WriteValue(Convert.ToDateTime(_value, CultureInfo.InvariantCulture));
 				return;
 			case JTokenType.Bytes:
@@ -572,10 +562,7 @@ namespace OpenGamingLibrary.Json.Linq
 		/// <param name="other">An object to compare with this object.</param>
 		public bool Equals (JValue other)
 		{
-			if (other == null)
-				return false;
-
-			return ValuesEquals(this, other);
+			return other != null && ValuesEquals(this, other);
 		}
 
 		/// <summary>
@@ -608,10 +595,8 @@ namespace OpenGamingLibrary.Json.Linq
 		/// </returns>
 		public override int GetHashCode ()
 		{
-			if (_value == null)
-				return 0;
+			return _value == null ? 0 : _value.GetHashCode();
 
-			return _value.GetHashCode();
 		}
 
 		/// <summary>
@@ -622,10 +607,8 @@ namespace OpenGamingLibrary.Json.Linq
 		/// </returns>
 		public override string ToString ()
 		{
-			if (_value == null)
-				return string.Empty;
+			return _value == null ? string.Empty : _value.ToString();
 
-			return _value.ToString();
 		}
 
 		/// <summary>
@@ -712,12 +695,9 @@ namespace OpenGamingLibrary.Json.Linq
 		{
 			if (_value == null)
 				return TypeCode.Empty;
-
-#if !NET20
 			if (_value is DateTimeOffset)
 				return TypeCode.DateTime;
-#endif
-#if !(NET20 || NET35 || PORTABLE40)
+#if NET40
 			if (_value is BigInteger)
 				return TypeCode.Object;
 #endif

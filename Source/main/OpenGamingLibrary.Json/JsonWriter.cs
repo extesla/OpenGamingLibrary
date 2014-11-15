@@ -26,7 +26,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Utilities;
 using System.Globalization;
 using System.Linq;
@@ -486,11 +488,13 @@ namespace OpenGamingLibrary.Json
                         WriteComment((reader.Value != null) ? reader.Value.ToString() : null);
                         break;
                     case JsonToken.Integer:
+#if NET40
                         if (reader.Value is BigInteger)
                         {
                             WriteValue((BigInteger)reader.Value);
                         }
                         else
+#endif
                         {
                             WriteValue(Convert.ToInt64(reader.Value, CultureInfo.InvariantCulture));
                         }
@@ -1213,11 +1217,13 @@ namespace OpenGamingLibrary.Json
             }
             else
             {
+#if NET40
                 // this is here because adding a WriteValue(BigInteger) to JsonWriter will
                 // mean the user has to add a reference to OpenGamingLibrary.Numerics;.dll
 				if (value is BigInteger) {
 					throw CreateUnsupportedTypeException(this, value);
 				}
+#endif
                 WriteValue(this, ConvertUtils.GetTypeCode(value.GetType()), value);
             }
         }
@@ -1334,14 +1340,12 @@ namespace OpenGamingLibrary.Json
                 case PrimitiveTypeCode.DateTimeNullable:
                     writer.WriteValue((value == null) ? (DateTime?)null : (DateTime)value);
                     break;
-#if !NET20
                 case PrimitiveTypeCode.DateTimeOffset:
                     writer.WriteValue((DateTimeOffset)value);
                     break;
                 case PrimitiveTypeCode.DateTimeOffsetNullable:
                     writer.WriteValue((value == null) ? (DateTimeOffset?)null : (DateTimeOffset)value);
                     break;
-#endif
                 case PrimitiveTypeCode.Decimal:
                     writer.WriteValue((decimal)value);
                     break;
@@ -1360,6 +1364,7 @@ namespace OpenGamingLibrary.Json
                 case PrimitiveTypeCode.TimeSpanNullable:
                     writer.WriteValue((value == null) ? (TimeSpan?)null : (TimeSpan)value);
                     break;
+#if NET40
                 case PrimitiveTypeCode.BigInteger:
                     // this will call to WriteValue(object)
                     writer.WriteValue((BigInteger)value);
@@ -1368,6 +1373,7 @@ namespace OpenGamingLibrary.Json
                     // this will call to WriteValue(object)
                     writer.WriteValue((value == null) ? (BigInteger)null : (BigInteger)value);
                     break;
+#endif
                 case PrimitiveTypeCode.Uri:
                     writer.WriteValue((Uri)value);
                     break;

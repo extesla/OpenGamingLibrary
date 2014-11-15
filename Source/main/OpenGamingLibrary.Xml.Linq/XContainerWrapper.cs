@@ -71,7 +71,7 @@ namespace OpenGamingLibrary.Xml.Linq
 			}
 		}
 
-		internal static IXmlNode WrapNode(XObject node)
+		public static IXmlNode WrapNode(XObject node)
 		{
 			if (node is XDocument)
 				return new XDocumentWrapper((XDocument)node);

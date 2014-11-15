@@ -24,7 +24,9 @@
 using System;
 using System.IO;
 using System.Globalization;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Linq;
 using OpenGamingLibrary.Json.Utilities;
 using System.Xml;
@@ -228,10 +230,12 @@ namespace OpenGamingLibrary.Json
             return value.ToString(null, CultureInfo.InvariantCulture);
         }
 
+#if NET40
         private static string ToStringInternal(BigInteger value)
         {
             return value.ToString();
         }
+#endif
 
         /// <summary>
         /// Converts the <see cref="UInt64"/> to its JSON string representation.
@@ -480,8 +484,10 @@ namespace OpenGamingLibrary.Json
                     return ToString((Uri)value);
                 case PrimitiveTypeCode.TimeSpan:
                     return ToString((TimeSpan)value);
+#if NET40
                 case PrimitiveTypeCode.BigInteger:
                     return ToStringInternal((BigInteger)value);
+#endif
             }
 
             throw new ArgumentException("Unsupported type: {0}. Use the JsonSerializer class to get the object's JSON representation.".FormatWith(CultureInfo.InvariantCulture, value.GetType()));

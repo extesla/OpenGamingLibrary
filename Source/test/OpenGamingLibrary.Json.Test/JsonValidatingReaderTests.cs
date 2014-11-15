@@ -26,7 +26,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using Xunit;
 using System.Xml;
@@ -342,7 +344,7 @@ namespace OpenGamingLibrary.Json.Test
             Assert.NotNull(validationEventArgs);
         }
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
         [Fact]
         public void IntegerGreaterThanMaximumValue_BigInteger()
         {
@@ -595,7 +597,7 @@ namespace OpenGamingLibrary.Json.Test
             Assert.NotNull(validationEventArgs);
         }
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
         [Fact]
         public void BigIntegerDivisibleBy_Success()
         {

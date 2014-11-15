@@ -1311,9 +1311,12 @@ namespace OpenGamingLibrary.Json
                         if (number.Length > MaximumJavascriptIntegerCharacterLength)
                             throw JsonReaderException.Create(this, "JSON integer {0} is too large to parse.".FormatWith(CultureInfo.InvariantCulture, _stringReference.ToString()));
                         
+						#if NET40
                         numberValue = BigIntegerParse(number, CultureInfo.InvariantCulture);
                         numberType = JsonToken.Integer;
-                        //throw JsonReaderException.Create(this, "JSON integer {0} is too large or small for an Int64.".FormatWith(CultureInfo.InvariantCulture, _stringReference.ToString()));
+						#else
+                        throw JsonReaderException.Create(this, "JSON integer {0} is too large or small for an Int64.".FormatWith(CultureInfo.InvariantCulture, _stringReference.ToString()));
+						#endif
                     }
                     else
                     {
@@ -1347,6 +1350,7 @@ namespace OpenGamingLibrary.Json
             SetToken(numberType, numberValue, false);
         }
 
+#if NET40
         // By using the BigInteger type in a separate method,
         // the runtime can execute the ParseNumber even if 
         // the OpenGamingLibrary.Numerics;.BigInteger.Parse method is
@@ -1356,6 +1360,7 @@ namespace OpenGamingLibrary.Json
         {
             return OpenGamingLibrary.Numerics.BigInteger.Parse(number, culture);
         }
+#endif
 
         private void ParseComment()
         {

@@ -23,8 +23,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Linq;
-using OpenGamingLibrary.Numerics;
 using System.Text;
 using System.IO;
 using System.Xml;
@@ -68,7 +70,7 @@ second line
 third line", jsonTextReader.Value);
         }
 
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE || ASPNETCORE50)
+#if NET40
         [Fact]
         public void ReadBigInteger()
         {
@@ -948,7 +950,7 @@ third line", jsonTextReader.Value);
             }
         }
 
-#if !(NET20 || NET35 || PORTABLE40 || PORTABLE || ASPNETCORE50)
+#if NET40
         [Fact]
         public void ReadInt64Overflow()
         {

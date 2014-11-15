@@ -25,8 +25,8 @@
 
 using System;
 using System.Collections.Generic;
-#if !(NET20 || NET35 || PORTABLE || PORTABLE40)
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
 #endif
 using System.Text;
 #if NETFX_CORE
@@ -124,7 +124,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
                 jsonWriter.WriteValue("DVD read/writer");
                 Assert.Equal(WriteState.Array, jsonWriter.WriteState);
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
                 jsonWriter.WriteValue(new BigInteger(123));
                 Assert.Equal(WriteState.Array, jsonWriter.WriteState);
 #endif
@@ -153,7 +153,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
   /*fail*/]", writer.Token.ToString());
         }
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
         [Fact]
         public void WriteBigInteger()
         {

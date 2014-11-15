@@ -28,9 +28,6 @@ using System.Collections.Generic;
 #if !(NET20 || NETFX_CORE || ASPNETCORE50)
 using System.Data.Linq;
 #endif
-#if !(NETFX_CORE || ASPNETCORE50)
-using System.Data.SqlTypes;
-#endif
 using System.Text;
 using OpenGamingLibrary.Json.Converters;
 #if NETFX_CORE
@@ -123,48 +120,6 @@ namespace OpenGamingLibrary.Json.Test.Converters
   ""NullByteArray"": null
 }", json);
         }
-
-#if !(NETFX_CORE || PORTABLE || PORTABLE40 || ASPNETCORE50)
-        public class SqlBinaryClass
-        {
-            public SqlBinary SqlBinary { get; set; }
-            public SqlBinary? NullableSqlBinary1 { get; set; }
-            public SqlBinary? NullableSqlBinary2 { get; set; }
-        }
-
-        [Fact]
-        public void SerializeSqlBinaryClass()
-        {
-            SqlBinaryClass sqlBinaryClass = new SqlBinaryClass();
-            sqlBinaryClass.SqlBinary = new SqlBinary(TestData);
-            sqlBinaryClass.NullableSqlBinary1 = new SqlBinary(TestData);
-            sqlBinaryClass.NullableSqlBinary2 = null;
-
-            string json = JsonConvert.SerializeObject(sqlBinaryClass, Formatting.Indented, new BinaryConverter());
-
-            StringAssert.Equal(@"{
-  ""SqlBinary"": ""VGhpcyBpcyBzb21lIHRlc3QgZGF0YSEhIQ=="",
-  ""NullableSqlBinary1"": ""VGhpcyBpcyBzb21lIHRlc3QgZGF0YSEhIQ=="",
-  ""NullableSqlBinary2"": null
-}", json);
-        }
-
-        [Fact]
-        public void DeserializeSqlBinaryClass()
-        {
-            string json = @"{
-  ""SqlBinary"": ""VGhpcyBpcyBzb21lIHRlc3QgZGF0YSEhIQ=="",
-  ""NullableSqlBinary1"": ""VGhpcyBpcyBzb21lIHRlc3QgZGF0YSEhIQ=="",
-  ""NullableSqlBinary2"": null
-}";
-
-            SqlBinaryClass sqlBinaryClass = JsonConvert.DeserializeObject<SqlBinaryClass>(json, new BinaryConverter());
-
-            Assert.Equal(new SqlBinary(TestData), sqlBinaryClass.SqlBinary);
-            Assert.Equal(new SqlBinary(TestData), sqlBinaryClass.NullableSqlBinary1);
-            Assert.Equal(null, sqlBinaryClass.NullableSqlBinary2);
-        }
-#endif
 
         [Fact]
         public void DeserializeByteArrayClass()

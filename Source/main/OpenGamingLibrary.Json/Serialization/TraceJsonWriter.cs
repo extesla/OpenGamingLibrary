@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 
 namespace OpenGamingLibrary.Json.Serialization
@@ -141,7 +143,7 @@ namespace OpenGamingLibrary.Json.Serialization
 
         public override void WriteValue(object value)
         {
-#if !(NET20 || NET35 || PORTABLE || PORTABLE40)
+#if NET40
             if (value is BigInteger)
             {
                 _textWriter.WriteValue(value);

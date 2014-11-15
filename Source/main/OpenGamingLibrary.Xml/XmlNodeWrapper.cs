@@ -68,7 +68,7 @@ namespace OpenGamingLibrary.Xml
 			}
 		}
 
-		internal static IXmlNode WrapNode(XmlNode node)
+		public static IXmlNode WrapNode(XmlNode node)
 		{
 			switch (node.NodeType)
 			{
@@ -121,7 +121,7 @@ namespace OpenGamingLibrary.Xml
 
 		public IXmlNode AppendChild(IXmlNode newChild)
 		{
-			XmlNodeWrapper xmlNodeWrapper = (XmlNodeWrapper) newChild;
+			var xmlNodeWrapper = newChild as XmlNodeWrapper;
 			_node.AppendChild(xmlNodeWrapper._node);
 			_childNodes = null;
 

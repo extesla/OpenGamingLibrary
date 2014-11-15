@@ -22,24 +22,11 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-#if NETFX_CORE
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using TestFixture = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.TestClassAttribute;
-using Test = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.TestMethodAttribute;
-#elif ASPNETCORE50
 using Xunit;
-using Test = Xunit.FactAttribute;
-using Assert = OpenGamingLibrary.Json.Test.Assert;
-#else
-using Xunit;
-#endif
 using OpenGamingLibrary.Json.Schema;
 using OpenGamingLibrary.Json.Linq;
 using System.IO;
 using OpenGamingLibrary.Json.Test.TestObjects;
-#if !(NETFX_CORE || ASPNETCORE50)
-using System.Data;
-#endif
 using OpenGamingLibrary.Xunit.Extensions;
 
 namespace OpenGamingLibrary.Json.Test.Schema
@@ -200,20 +187,12 @@ namespace OpenGamingLibrary.Json.Test.Schema
             GenerateSchemaAndSerializeFromType(new CircularReferenceWithIdClass());
             GenerateSchemaAndSerializeFromType(new ClassWithArray());
             GenerateSchemaAndSerializeFromType(new ClassWithGuid());
-#if !NET20
             GenerateSchemaAndSerializeFromType(new NullableDateTimeTestClass());
-#endif
-#if !(NETFX_CORE || PORTABLE || ASPNETCORE50 || PORTABLE40)
-            GenerateSchemaAndSerializeFromType(new DataSet());
-#endif
             GenerateSchemaAndSerializeFromType(new object());
             GenerateSchemaAndSerializeFromType(1);
             GenerateSchemaAndSerializeFromType("Hi");
             GenerateSchemaAndSerializeFromType(new DateTime(2000, 12, 29, 23, 59, 0, DateTimeKind.Utc));
             GenerateSchemaAndSerializeFromType(TimeSpan.FromTicks(1000000));
-#if !(NETFX_CORE || PORTABLE || ASPNETCORE50 || PORTABLE40)
-            GenerateSchemaAndSerializeFromType(DBNull.Value);
-#endif
             GenerateSchemaAndSerializeFromType(new JsonPropertyWithHandlingValues());
         }
 

@@ -25,8 +25,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Json.Utilities;
 using OpenGamingLibrary.Json.Linq;
 using System.Globalization;
@@ -224,12 +226,14 @@ namespace OpenGamingLibrary.Json.Bson
         /// <param name="value">The <see cref="Object"/> value to write.</param>
         public override void WriteValue(object value)
         {
+#if NET40
             if (value is BigInteger)
             {
                 InternalWriteValue(JsonToken.Integer);
                 AddToken(new BsonBinary(((BigInteger)value).ToByteArray(), BsonBinaryType.Binary));
             }
             else
+#endif
             {
                 base.WriteValue(value);
             }

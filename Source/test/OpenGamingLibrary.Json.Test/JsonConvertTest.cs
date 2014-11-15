@@ -24,6 +24,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+#if NET40
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
@@ -33,7 +36,6 @@ using OpenGamingLibrary.Json.Serialization;
 using OpenGamingLibrary.Json.Test.Serialization;
 using OpenGamingLibrary.Json.Test.TestObjects;
 using OpenGamingLibrary.Json.Utilities;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Xunit.Extensions;
 using Xunit;
 
@@ -747,7 +749,6 @@ namespace OpenGamingLibrary.Json.Test
             Assert.Equal(@"\/Date(-62135596800000)\/", result.MsDateUnspecified);
             Assert.Equal(@"\/Date(-62135596800000)\/", result.MsDateUtc);
 
-#if !NET20
             result = TestDateTime("DateTimeOffset TimeSpan Zero", new DateTimeOffset(2000, 1, 1, 1, 1, 1, TimeSpan.Zero));
             Assert.Equal("2000-01-01T01:01:01+00:00", result.IsoDateRoundtrip);
             Assert.Equal(@"\/Date(946688461000+0000)\/", result.MsDateRoundtrip);
@@ -779,7 +780,6 @@ namespace OpenGamingLibrary.Json.Test
             result = TestDateTime("DateTimeOffset Default", default(DateTimeOffset));
             Assert.Equal("0001-01-01T00:00:00+00:00", result.IsoDateRoundtrip);
             Assert.Equal(@"\/Date(-62135596800000+0000)\/", result.MsDateRoundtrip);
-#endif
         }
 
         public class DateTimeResult
@@ -819,7 +819,6 @@ namespace OpenGamingLibrary.Json.Test
 
             TestDateTimeFormat(value, new IsoDateTimeConverter());
 
-#if !NETFX_CORE
             if (value is DateTime)
             {
                 Console.WriteLine(XmlConvert.ToString((DateTime)(object)value, XmlDateTimeSerializationMode.RoundtripKind));
@@ -828,15 +827,12 @@ namespace OpenGamingLibrary.Json.Test
             {
                 Console.WriteLine(XmlConvert.ToString((DateTimeOffset)(object)value));
             }
-#endif
 
-#if !NET20
             MemoryStream ms = new MemoryStream();
             DataContractSerializer s = new DataContractSerializer(typeof(T));
             s.WriteObject(ms, value);
             string json = Encoding.UTF8.GetString(ms.ToArray(), 0, Convert.ToInt32(ms.Length));
             Console.WriteLine(json);
-#endif
 
             Console.WriteLine();
 
@@ -853,9 +849,7 @@ namespace OpenGamingLibrary.Json.Test
             }
             else
             {
-#if !NET20
                 date = JsonConvert.ToString((DateTimeOffset)(object)value, format);
-#endif
             }
 
             Console.WriteLine(format.ToString("g") + "-" + timeZoneHandling.ToString("g") + ": " + date);
@@ -961,7 +955,6 @@ namespace OpenGamingLibrary.Json.Test
             Assert.Equal("Bad Boys", m.Name);
         }
 
-#if !NET20
         [Fact]
         public void TestJsonDateTimeOffsetRoundtrip()
         {
@@ -999,7 +992,6 @@ namespace OpenGamingLibrary.Json.Test
             Console.WriteLine(sw.ToString());
             Console.WriteLine(sw.ToString().Length);
         }
-#endif
 
         [Fact]
         public void MaximumDateTimeLength()
@@ -1033,6 +1025,7 @@ namespace OpenGamingLibrary.Json.Test
             Console.WriteLine(sw.ToString().Length);
         }
 
+#if NET40
         [Fact]
         public void IntegerLengthOverflows()
         {
@@ -1045,6 +1038,7 @@ namespace OpenGamingLibrary.Json.Test
 
 			AssertException.Throws<JsonReaderException>(() => JObject.Parse(@"{""biginteger"":" + new String('9', 381) + "}"));
         }
+#endif
 
         [Fact]
         public void ParseIsoDate()

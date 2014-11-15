@@ -23,7 +23,9 @@
 
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Linq.JsonPath;
 using OpenGamingLibrary.Json.Test.Bson;
 using Xunit;
@@ -633,7 +635,7 @@ namespace OpenGamingLibrary.Json.Test.Linq.JsonPath
             Assert.True(JToken.DeepEquals(new JObject(new JProperty("hi", 3)), t[1]));
         }
 
-#if !(PORTABLE || ASPNETCORE50 || PORTABLE40 || NET35 || NET20)
+#if NET40
         [Fact]
         public void GreaterQueryBigInteger()
         {

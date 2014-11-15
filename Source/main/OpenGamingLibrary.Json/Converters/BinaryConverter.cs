@@ -24,7 +24,6 @@
 
 #if !(NETFX_CORE || PORTABLE40 || PORTABLE)
 using System;
-using System.Data.SqlTypes;
 using System.Globalization;
 using OpenGamingLibrary.Json.Utilities;
 using System.Collections.Generic;
@@ -66,9 +65,6 @@ namespace OpenGamingLibrary.Json.Converters
                 EnsureReflectionObject(value.GetType());
                 return (byte[])_reflectionObject.GetValue(value, BinaryToArrayName);
             }
-
-            if (value is SqlBinary)
-                return ((SqlBinary)value).Value;
 
             throw new JsonSerializationException("Unexpected value type when writing binary: {0}".FormatWith(CultureInfo.InvariantCulture, value.GetType()));
         }
@@ -126,9 +122,6 @@ namespace OpenGamingLibrary.Json.Converters
                 return _reflectionObject.Creator(data);
             }
 
-            if (t == typeof(SqlBinary))
-                return new SqlBinary(data);
-
             throw JsonSerializationException.Create(reader, "Unexpected object type when writing binary: {0}".FormatWith(CultureInfo.InvariantCulture, objectType));
         }
 
@@ -167,10 +160,6 @@ namespace OpenGamingLibrary.Json.Converters
         {
             if (objectType.AssignableToTypeName(BinaryTypeName))
                 return true;
-
-            if (objectType == typeof(SqlBinary) || objectType == typeof(SqlBinary?))
-                return true;
-
             return false;
         }
     }

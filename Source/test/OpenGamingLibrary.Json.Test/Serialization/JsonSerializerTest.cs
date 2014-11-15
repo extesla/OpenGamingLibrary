@@ -34,6 +34,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+#if NET40
+using System.Numerics;
+#endif
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -51,7 +54,6 @@ using OpenGamingLibrary.Collections;
 using OpenGamingLibrary.Json.Bson;
 using OpenGamingLibrary.Json.Linq;
 using OpenGamingLibrary.Json.Converters;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Json.Serialization;
 using OpenGamingLibrary.Json.Test.Linq;
 using OpenGamingLibrary.Json.Test.TestObjects;
@@ -7326,6 +7328,7 @@ To fix this error either change the environment to be fully trusted, change the 
 }", json);
         }
 
+#if NET40
         [Fact]
         public void SerializeBigInteger()
         {
@@ -7337,6 +7340,7 @@ To fix this error either change the environment to be fully trusted, change the 
   123456789999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999990
 ]", json);
         }
+#endif
 
         public class FooConstructor
         {

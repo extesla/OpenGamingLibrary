@@ -25,9 +25,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using OpenGamingLibrary.Json.Test.TestObjects;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Json.Linq;
 using OpenGamingLibrary.Json.Test.Serialization;
 using OpenGamingLibrary.Xunit.Extensions;
@@ -137,10 +139,12 @@ namespace OpenGamingLibrary.Json.Test.Linq
             Assert.Equal(g, v.Value);
             Assert.Equal(JTokenType.Guid, v.Type);
 
+#if NET40
             BigInteger i = BigInteger.Parse("123456789999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999990");
             v.Value = i;
             Assert.Equal(i, v.Value);
             Assert.Equal(JTokenType.Integer, v.Type);
+#endif
         }
 
         [Fact]
@@ -194,11 +198,13 @@ namespace OpenGamingLibrary.Json.Test.Linq
 
             v = new JValue(new Guid("B282ADE7-C520-496C-A448-4084F6803DE5"));
             Assert.Equal("b282ade7-c520-496c-a448-4084f6803de5", v.ToString(null, CultureInfo.InvariantCulture));
-
+#if NET40
             v = new JValue(BigInteger.Parse("123456789999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999990"));
             Assert.Equal("123456789999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999990", v.ToString(null, CultureInfo.InvariantCulture));
+#endif
         }
 
+#if NET40
         [Fact]
         public void JValueParse()
         {
@@ -207,6 +213,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
             Assert.Equal(JTokenType.Integer, v.Type);
             Assert.Equal(BigInteger.Parse("123456789999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999990"), v.Value);
         }
+#endif
 
         [Fact]
         public void Last()
@@ -462,11 +469,13 @@ namespace OpenGamingLibrary.Json.Test.Linq
             Assert.Equal(Int32.MaxValue, Convert.ToInt32(new JValue(Int32.MaxValue)));
         }
 
+#if NET40
         [Fact]
         public void ConvertsToInt32_BigInteger()
         {
             Assert.Equal(123, Convert.ToInt32(new JValue(BigInteger.Parse("123"))));
         }
+#endif
 
         [Fact]
         public void ConvertsToChar()
@@ -595,8 +604,10 @@ namespace OpenGamingLibrary.Json.Test.Linq
             v = new JValue(new Uri("http://www.google.com"));
             Assert.Equal(TypeCode.Object, v.GetTypeCode());
 
+#if NET40
             v = new JValue(new BigInteger(3));
             Assert.Equal(TypeCode.Object, v.GetTypeCode());
+#endif
         }
 
         [Fact]
@@ -607,8 +618,10 @@ namespace OpenGamingLibrary.Json.Test.Linq
             int i = (int)v.ToType(typeof(int), CultureInfo.InvariantCulture);
             Assert.Equal(9, i);
 
+#if NET40
             var bi = (BigInteger)v.ToType(typeof(BigInteger), CultureInfo.InvariantCulture);
             Assert.Equal(new BigInteger(9), bi);
+#endif
         }
 
         [Fact]
@@ -622,6 +635,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
         [Fact]
         public void ToStringNewTypes()
         {
+#if NET40
             var a = new JArray(
                 new JValue(new DateTimeOffset(2013, 02, 01, 01, 02, 03, 04, TimeSpan.FromHours(1))),
                 new JValue(new BigInteger(5)),
@@ -633,6 +647,17 @@ namespace OpenGamingLibrary.Json.Test.Linq
   5,
   1.1
 ]", a.ToString());
+#else
+            var a = new JArray(
+                new JValue(new DateTimeOffset(2013, 02, 01, 01, 02, 03, 04, TimeSpan.FromHours(1))),
+                new JValue(1.1f)
+                );
+
+            StringAssert.Equal(@"[
+  ""2013-02-01T01:02:03.004+01:00"",
+  1.1
+]", a.ToString());
+#endif
         }
 
         [Fact]

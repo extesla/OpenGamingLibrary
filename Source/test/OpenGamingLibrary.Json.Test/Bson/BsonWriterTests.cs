@@ -22,7 +22,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using System.Text.RegularExpressions;
 using Xunit;
@@ -795,7 +797,7 @@ namespace OpenGamingLibrary.Json.Test.Bson
             Assert.Equal(c.AGuid, c2.AGuid.ToString());
         }
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
         [Fact]
         public void WriteBigInteger()
         {

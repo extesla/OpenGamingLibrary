@@ -22,7 +22,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using OpenGamingLibrary.Json.Converters;
 using Xunit;
@@ -340,7 +342,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
 
             Assert.Equal(5, (int)(new JValue(StringComparison.OrdinalIgnoreCase)));
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
             string bigIntegerText = "1234567899999999999999999999999999999999999999999999999999999999999990";
 
             Assert.Equal(BigInteger.Parse(bigIntegerText), (new JValue(BigInteger.Parse(bigIntegerText))).Value);
@@ -420,7 +422,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
 #endif
             AssertException.Throws<ArgumentException>(() => { var i = (Uri)new JValue(true); }, "Can not convert Boolean to Uri.");
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
             AssertException.Throws<ArgumentException>(() => { var i = (new JValue(new Uri("http://www.google.com"))).ToObject<BigInteger>(); }, "Can not convert Uri to BigInteger.");
             AssertException.Throws<ArgumentException>(() => { var i = (JValue.CreateNull()).ToObject<BigInteger>(); }, "Can not convert Null to BigInteger.");
             AssertException.Throws<ArgumentException>(() => { var i = (new JValue(Guid.NewGuid())).ToObject<BigInteger>(); }, "Can not convert Guid to BigInteger.");
@@ -437,7 +439,7 @@ namespace OpenGamingLibrary.Json.Test.Linq
         [Fact]
         public void ToObject()
         {
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50)
+#if NET40
             Assert.Equal((BigInteger)1, (new JValue(1).ToObject(typeof(BigInteger))));
             Assert.Equal((BigInteger)1, (new JValue(1).ToObject(typeof(BigInteger))));
             Assert.Equal((BigInteger)null, (JValue.CreateNull().ToObject(typeof(BigInteger))));
@@ -489,12 +491,10 @@ namespace OpenGamingLibrary.Json.Test.Linq
         public void ImplicitCastingTo()
         {
             Assert.True(JToken.DeepEquals(new JValue(new DateTime(2000, 12, 20)), (JValue)new DateTime(2000, 12, 20)));
-#if !NET20
             Assert.True(JToken.DeepEquals(new JValue(new DateTimeOffset(2000, 12, 20, 23, 50, 10, TimeSpan.Zero)), (JValue)new DateTimeOffset(2000, 12, 20, 23, 50, 10, TimeSpan.Zero)));
             Assert.True(JToken.DeepEquals(new JValue((DateTimeOffset?)null), (JValue)(DateTimeOffset?)null));
-#endif
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
             // had to remove implicit casting to avoid user reference to System.Numerics.dll
             Assert.True(JToken.DeepEquals(new JValue(new BigInteger(1)), new JValue(new BigInteger(1))));
             Assert.True(JToken.DeepEquals(new JValue((BigInteger)null), new JValue((BigInteger)null)));

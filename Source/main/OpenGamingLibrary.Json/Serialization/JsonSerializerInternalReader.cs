@@ -29,7 +29,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Reflection;
 using System.Runtime.Serialization;
 using OpenGamingLibrary.Json.Linq;
@@ -771,12 +773,12 @@ namespace OpenGamingLibrary.Json.Serialization
 							if (ConvertUtils.IsInteger(primitiveContract.TypeCode))
 								return Enum.ToObject(contract.NonNullableUnderlyingType, value);
 						}
-
+						#if NET40
 						if (value is BigInteger)
 						{
 							return ConvertUtils.FromBigInteger((BigInteger)value, targetType);
 						}
-
+						#endif
 						// this won't work when converting to a custom IConvertible
 						return Convert.ChangeType(value, contract.NonNullableUnderlyingType, culture);
 					}

@@ -32,7 +32,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -94,8 +93,6 @@
     <Compile Include="Converters\BinaryConverter.cs" />
     <Compile Include="Converters\BsonObjectIdConverter.cs" />
     <Compile Include="Converters\CustomCreationConverter.cs" />
-    <Compile Include="Converters\DataSetConverter.cs" />
-    <Compile Include="Converters\DataTableConverter.cs" />
     <Compile Include="Converters\DateTimeConverterBase.cs" />
     <Compile Include="Converters\EntityKeyMemberConverter.cs" />
     <Compile Include="Converters\IsoDateTimeConverter.cs" />
@@ -248,10 +245,6 @@
     <ProjectReference Include="..\OpenGamingLibrary.Xml.Linq\OpenGamingLibrary.Xml.Linq.csproj">
       <Project>{2B2F7E35-B753-4433-BDA7-85543BD3A653}</Project>
       <Name>OpenGamingLibrary.Xml.Linq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenGamingLibrary.Numerics\OpenGamingLibrary.Numerics.csproj">
-      <Project>{09383977-71FE-4F77-AF26-AEB098664E38}</Project>
-      <Name>OpenGamingLibrary.Numerics</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenGamingLibrary\OpenGamingLibrary.csproj">
       <Project>{F2B14C4B-6493-42D9-8D7F-07C3B7A00B41}</Project>

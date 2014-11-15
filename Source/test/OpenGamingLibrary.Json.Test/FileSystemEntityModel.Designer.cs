@@ -27,7 +27,7 @@ using System.Xml.Serialization;
 namespace OpenGamingLibrary.Json.Test
 {
     #region Contexts
-    
+    /*
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
@@ -88,6 +88,7 @@ namespace OpenGamingLibrary.Json.Test
         #endregion
 
     }
+	*/
 
     #endregion
 

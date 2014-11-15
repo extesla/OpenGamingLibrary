@@ -23,7 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Globalization;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Utilities;
 
 namespace OpenGamingLibrary.Json.Linq
@@ -186,7 +188,7 @@ namespace OpenGamingLibrary.Json.Linq
         /// <param name="value">The <see cref="Object"/> value to write.</param>
         public override void WriteValue(object value)
         {
-#if !(NET20 || NET35 || PORTABLE || PORTABLE40)
+#if NET40
             if (value is BigInteger)
             {
                 InternalWriteValue(JsonToken.Integer);

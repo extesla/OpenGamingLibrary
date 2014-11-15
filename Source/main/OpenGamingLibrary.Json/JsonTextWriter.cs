@@ -1,5 +1,5 @@
-﻿#region License
-// Copyright (c) 2007 James Newton-King; 2014 Extesla, LLC.
+﻿// Copyright (c) 2007 James Newton-King
+// Copyright (c) 2014 Extesla, LLC.
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -21,12 +21,12 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using System.IO;
 using System.Xml;
@@ -317,6 +317,7 @@ namespace OpenGamingLibrary.Json
         /// <param name="value">The <see cref="Object"/> value to write.</param>
         public override void WriteValue(object value)
         {
+#if NET40
 			var bigInteger = value as BigInteger;
             if (bigInteger != null)
             {
@@ -324,6 +325,7 @@ namespace OpenGamingLibrary.Json
                 WriteValueInternal(bigInteger.ToString(), JsonToken.String);
             }
             else
+#endif
             {
                 base.WriteValue(value);
             }

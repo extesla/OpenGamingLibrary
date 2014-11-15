@@ -93,8 +93,6 @@ namespace OpenGamingLibrary.Json.Serialization
             new EntityKeyMemberConverter(),
             new XmlNodeConverter(),
             new BinaryConverter(),
-            new DataSetConverter(),
-            new DataTableConverter(),
             new KeyValuePairConverter(),
             new BsonObjectIdConverter(),
             new RegexConverter()

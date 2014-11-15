@@ -27,6 +27,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+#if NET40
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
@@ -34,7 +37,6 @@ using OpenGamingLibrary.Json.Converters;
 using OpenGamingLibrary.Json.Linq;
 using OpenGamingLibrary.Json.Serialization;
 using OpenGamingLibrary.Json.Test.TestObjects;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Xunit.Extensions;
 using Xunit;
 
@@ -861,7 +863,9 @@ OpenGamingLibrary.Json Error: 0 : Error!
             traceWriter.WriteValue((long?)1);
             traceWriter.WriteValue((ulong?)1);
             traceWriter.WriteValue((bool?)true);
+#if NET40
             traceWriter.WriteValue(BigInteger.Parse("9999999990000000000000000000000000000000000"));
+#endif
 
             traceWriter.WriteValue((object)true);
             traceWriter.WriteValue(TimeSpan.FromMinutes(1));
@@ -1008,10 +1012,12 @@ OpenGamingLibrary.Json Error: 0 : Error!
             Assert.Equal(JsonToken.Float, traceReader.TokenType);
             Assert.Equal(1.1m, traceReader.Value);
 
+#if NET40
             traceReader.Read();
             Assert.Equal(JsonToken.Integer, traceReader.TokenType);
             Assert.Equal(typeof(BigInteger), traceReader.ValueType);
             Assert.Equal(BigInteger.Parse("9999999990000000000000000000000000000000000"), traceReader.Value);
+#endif
 
             traceReader.Read();
             Assert.Equal(JsonToken.Null, traceReader.TokenType);

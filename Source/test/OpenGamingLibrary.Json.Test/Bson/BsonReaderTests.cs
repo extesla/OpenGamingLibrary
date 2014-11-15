@@ -23,6 +23,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+#if NET40
+using System.Numerics;
+#endif
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -33,7 +36,6 @@ using OpenGamingLibrary.Json.Serialization;
 using OpenGamingLibrary.Json.Test.Serialization;
 using OpenGamingLibrary.Json.Test.TestObjects;
 using OpenGamingLibrary.Json.Utilities;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Xunit.Extensions;
 using Xunit;
 using System.IO;
@@ -1477,7 +1479,7 @@ namespace OpenGamingLibrary.Json.Test.Bson
         }
 #endif
 
-#if !(NET20 || NET35 || PORTABLE || ASPNETCORE50 || PORTABLE40)
+#if NET40
         public class BigIntegerTestClass
         {
             public BigInteger Blah { get; set; }

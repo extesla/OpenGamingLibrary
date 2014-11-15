@@ -27,15 +27,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.ComponentModel;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using System.Text.RegularExpressions;
 using OpenGamingLibrary.Json.Serialization;
 using System.Reflection;
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
-using System.Data.SqlTypes;
-
-#endif
 
 namespace OpenGamingLibrary.Json.Utilities
 {
@@ -142,15 +140,16 @@ namespace OpenGamingLibrary.Json.Utilities
                 { typeof(Guid?), PrimitiveTypeCode.GuidNullable },
                 { typeof(TimeSpan), PrimitiveTypeCode.TimeSpan },
                 { typeof(TimeSpan?), PrimitiveTypeCode.TimeSpanNullable },
+#if NET40
                 { typeof(BigInteger), PrimitiveTypeCode.BigInteger },
-                //{ typeof(BigInteger), PrimitiveTypeCode.BigIntegerNullable },
+                { typeof(BigInteger), PrimitiveTypeCode.BigIntegerNullable },
+#endif
                 { typeof(Uri), PrimitiveTypeCode.Uri },
                 { typeof(string), PrimitiveTypeCode.String },
                 { typeof(byte[]), PrimitiveTypeCode.Bytes },
                 { typeof(DBNull), PrimitiveTypeCode.DBNull }
             };
 
-#if !(NETFX_CORE || PORTABLE)
         private static readonly TypeInformation[] PrimitiveTypeCodes =
         {
             new TypeInformation { Type = typeof(object), TypeCode = PrimitiveTypeCode.Empty },
@@ -173,7 +172,6 @@ namespace OpenGamingLibrary.Json.Utilities
             new TypeInformation { Type = typeof(object), TypeCode = PrimitiveTypeCode.Empty }, // no 17 in TypeCode for some reason
             new TypeInformation { Type = typeof(string), TypeCode = PrimitiveTypeCode.String }
         };
-#endif
 
         public static PrimitiveTypeCode GetTypeCode(Type t)
         {
@@ -285,6 +283,7 @@ namespace OpenGamingLibrary.Json.Utilities
             return o => call(null, o);
         }
 
+#if NET40
         internal static BigInteger ToBigInteger(object value)
         {
             if (value is BigInteger)
@@ -331,6 +330,7 @@ namespace OpenGamingLibrary.Json.Utilities
                 throw new InvalidOperationException("Can not convert from BigInteger to {0}.".FormatWith(CultureInfo.InvariantCulture, targetType), ex);
             }
         }
+#endif
 
         #region TryConvert
         internal enum ConvertResult
@@ -459,7 +459,7 @@ namespace OpenGamingLibrary.Json.Utilities
                     return ConvertResult.Success;
                 }
             }
-
+#if NET40
             if (targetType == typeof(BigInteger))
             {
                 value = ToBigInteger(initialValue);
@@ -470,8 +470,8 @@ namespace OpenGamingLibrary.Json.Utilities
                 value = FromBigInteger((BigInteger)initialValue, targetType);
                 return ConvertResult.Success;
             }
+#endif
 
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
             // see if source or target types have a TypeConverter that converts between the two
             TypeConverter toConverter = GetConverter(initialType);
 
@@ -488,8 +488,7 @@ namespace OpenGamingLibrary.Json.Utilities
                 value = fromConverter.ConvertFrom(null, culture, initialValue);
                 return ConvertResult.Success;
             }
-#endif
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
+
             // handle DBNull and INullable
             if (initialValue == DBNull.Value)
             {
@@ -503,14 +502,6 @@ namespace OpenGamingLibrary.Json.Utilities
                 value = null;
                 return ConvertResult.CannotConvertNull;
             }
-#endif
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
-            if (initialValue is INullable)
-            {
-                value = EnsureTypeAssignable(ToValue((INullable)initialValue), initialType, targetType);
-                return ConvertResult.Success;
-            }
-#endif
 
             if (targetType.IsInterface() || targetType.IsGenericTypeDefinition() || targetType.IsAbstract())
             {
@@ -573,26 +564,6 @@ namespace OpenGamingLibrary.Json.Utilities
 
             throw new ArgumentException("Could not cast or convert from {0} to {1}.".FormatWith(CultureInfo.InvariantCulture, (initialType != null) ? initialType.ToString() : "{null}", targetType));
         }
-
-#if !(NETFX_CORE || PORTABLE40 || PORTABLE)
-        public static object ToValue(INullable nullableValue)
-        {
-            if (nullableValue == null)
-                return null;
-            else if (nullableValue is SqlInt32)
-                return ToValue((SqlInt32)nullableValue);
-            else if (nullableValue is SqlInt64)
-                return ToValue((SqlInt64)nullableValue);
-            else if (nullableValue is SqlBoolean)
-                return ToValue((SqlBoolean)nullableValue);
-            else if (nullableValue is SqlString)
-                return ToValue((SqlString)nullableValue);
-            else if (nullableValue is SqlDateTime)
-                return ToValue((SqlDateTime)nullableValue);
-
-            throw new ArgumentException("Unsupported INullable type: {0}".FormatWith(CultureInfo.InvariantCulture, nullableValue.GetType()));
-        }
-#endif
 
 #if !(NETFX_CORE || PORTABLE40 || PORTABLE)
         internal static TypeConverter GetConverter(Type t)

@@ -27,8 +27,10 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+#if NET40
+using System.NET40;
+#endif
 using System.Web.UI;
-using OpenGamingLibrary.Numerics;
 using OpenGamingLibrary.Json.Serialization;
 using OpenGamingLibrary.Json.Test.TestObjects;
 using OpenGamingLibrary.Json.Linq;

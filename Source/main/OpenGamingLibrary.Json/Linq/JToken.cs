@@ -25,7 +25,9 @@ using System;
 using System.Collections.Generic;
 using OpenGamingLibrary.Json.Linq.JsonPath;
 using System.IO;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using System.Text;
 using OpenGamingLibrary.Json.Utilities;
 using System.Diagnostics;
@@ -439,9 +441,11 @@ namespace OpenGamingLibrary.Json.Linq
 			if (v == null || !ValidateToken(v, BooleanTypes, false)) {
 				throw new ArgumentException("Can not convert {0} to Boolean.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+#if NET40
 			if (v.Value is BigInteger) {
 				return Convert.ToBoolean((int)(BigInteger)v.Value);
 			}
+#endif
             return Convert.ToBoolean(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -477,9 +481,11 @@ namespace OpenGamingLibrary.Json.Linq
 			if (v == null || !ValidateToken(v, BooleanTypes, true)) {
                 throw new ArgumentException("Can not convert {0} to Boolean.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+#if NET40
 			if (v.Value is BigInteger) {
-                return Convert.ToBoolean((int)(BigInteger)v.Value);
+				return Convert.ToBoolean((int)(BigInteger)v.Value);
 			}
+#endif
             return (v.Value != null) ? (bool?)Convert.ToBoolean(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -493,8 +499,12 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to Int64.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+#if NET40
             if (v.Value is BigInteger)
+			{
                 return (long)(BigInteger)v.Value;
+			}
+#endif
             return Convert.ToInt64(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -552,11 +562,11 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Decimal.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
-
+			#if NET40
 			var bigInteger = v.Value as BigInteger;
             if (bigInteger != null)
                 return (decimal?)bigInteger;
-
+			#endif
             return (v.Value != null) ? (decimal?)Convert.ToDecimal(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -573,11 +583,11 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Double.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
-
+			#if NET40
 			var bigInteger = v.Value as BigInteger;
 			if (bigInteger != null)
                 return (double?)v.Value;
-
+			#endif
             return (v.Value != null) ? (double?)Convert.ToDouble(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -594,8 +604,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, CharTypes, true))
                 throw new ArgumentException("Can not convert {0} to Char.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (char?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (char?)Convert.ToChar(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -609,8 +621,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to Int32.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (int)(BigInteger)v.Value;
+			#endif
             return Convert.ToInt32(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -624,8 +638,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to Int16.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (short)(BigInteger)v.Value;
+			#endif
             return Convert.ToInt16(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -640,8 +656,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to UInt16.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (ushort)(BigInteger)v.Value;
+			#endif
             return Convert.ToUInt16(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -656,8 +674,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, CharTypes, false))
                 throw new ArgumentException("Can not convert {0} to Char.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (char)(BigInteger)v.Value;
+			#endif
             return Convert.ToChar(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -671,8 +691,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to Byte.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (byte)(BigInteger)v.Value;
+			#endif
             return Convert.ToByte(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -687,8 +709,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to SByte.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (sbyte)(BigInteger)v.Value;
+			#endif
             return Convert.ToSByte(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -705,8 +729,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Int32.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (int?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (int?)Convert.ToInt32(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -723,8 +749,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Int16.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (short?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (short?)Convert.ToInt16(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -742,8 +770,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to UInt16.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (ushort?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (ushort?)Convert.ToUInt16(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -760,8 +790,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Byte.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (byte?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (byte?)Convert.ToByte(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -779,8 +811,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to SByte.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (sbyte?)(BigInteger)v.Value;
+			#endif
             return (v.Value != null) ? (sbyte?)Convert.ToByte(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -812,9 +846,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, true))
                 throw new ArgumentException("Can not convert {0} to Int64.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (long?)(BigInteger)v.Value;
-
+			#endif
             return (v.Value != null) ? (long?)Convert.ToInt64(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -832,9 +867,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, true)) {
                 throw new ArgumentException("Can not convert {0} to Single.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (float?)(BigInteger)v.Value;
 			}
+			#endif
             return (v.Value != null) ? (float?)Convert.ToSingle(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -849,10 +886,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, false)) {
                 throw new ArgumentException("Can not convert {0} to Decimal.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (decimal)(BigInteger)v.Value;
 			}
-
+			#endif
             return Convert.ToDecimal(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -871,10 +909,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, true)) {
                 throw new ArgumentException("Can not convert {0} to UInt32.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (uint?)(BigInteger)v.Value;
 			}
-
+			#endif
             return (v.Value != null) ? (uint?)Convert.ToUInt32(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -893,10 +932,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, true)) {
                 throw new ArgumentException("Can not convert {0} to UInt64.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (ulong?)(BigInteger)v.Value;
 			}
-
+			#endif
             return (v.Value != null) ? (ulong?)Convert.ToUInt64(v.Value, CultureInfo.InvariantCulture) : null;
         }
 
@@ -911,9 +951,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, false)) {
                 throw new ArgumentException("Can not convert {0} to Double.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (double)(BigInteger)v.Value;
 			}
+			#endif
             return Convert.ToDouble(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -928,9 +970,11 @@ namespace OpenGamingLibrary.Json.Linq
             if (v == null || !ValidateToken(v, NumberTypes, false)) {
                 throw new ArgumentException("Can not convert {0} to Single.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
 			}
+			#if NET40
             if (v.Value is BigInteger) {
                 return (float)(BigInteger)v.Value;
 			}
+			#endif
             return Convert.ToSingle(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -952,8 +996,10 @@ namespace OpenGamingLibrary.Json.Linq
                 return null;
             if (v.Value is byte[])
                 return Convert.ToBase64String((byte[])v.Value);
+			#if NET40
             if (v.Value is BigInteger)
                 return ((BigInteger)v.Value).ToString(CultureInfo.InvariantCulture);
+			#endif
             return Convert.ToString(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -968,8 +1014,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to UInt32.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
-            if (v.Value is BigInteger)
+			#if NET40
+			if (v.Value is BigInteger)
                 return (uint)(BigInteger)v.Value;
+			#endif
             return Convert.ToUInt32(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -984,8 +1032,10 @@ namespace OpenGamingLibrary.Json.Linq
             JValue v = EnsureValue(value);
             if (v == null || !ValidateToken(v, NumberTypes, false))
                 throw new ArgumentException("Can not convert {0} to UInt64.".FormatWith(CultureInfo.InvariantCulture, GetType(value)));
+			#if NET40
             if (v.Value is BigInteger)
                 return (ulong)(BigInteger)v.Value;
+			#endif
             return Convert.ToUInt64(v.Value, CultureInfo.InvariantCulture);
         }
 
@@ -1005,8 +1055,10 @@ namespace OpenGamingLibrary.Json.Linq
 
             if (v.Value is string)
                 return Convert.FromBase64String(Convert.ToString(v.Value, CultureInfo.InvariantCulture));
-            if (v.Value is BigInteger)
+			#if NET40
+			if (v.Value is BigInteger)
                 return ((BigInteger)v.Value).ToByteArray();
+			#endif
             if (v.Value is byte[])
                 return (byte[])v.Value;
 
@@ -1107,6 +1159,7 @@ namespace OpenGamingLibrary.Json.Linq
             return (v.Value is Uri) ? (Uri)v.Value : new Uri(Convert.ToString(v.Value, CultureInfo.InvariantCulture));
         }
 
+#if NET40
         private static BigInteger ToBigInteger(JToken value)
         {
             JValue v = EnsureValue(value);
@@ -1127,6 +1180,7 @@ namespace OpenGamingLibrary.Json.Linq
 
             return ConvertUtils.ToBigInteger(v.Value);
         }
+#endif
         #endregion
 
         #region Cast to operators
@@ -1662,10 +1716,12 @@ namespace OpenGamingLibrary.Json.Linq
                         return (TimeSpan?)this;
                     case PrimitiveTypeCode.TimeSpan:
                         return (TimeSpan)this;
+					#if NET40
                     case PrimitiveTypeCode.BigIntegerNullable:
                         return ToBigIntegerNullable(this);
                     case PrimitiveTypeCode.BigInteger:
                         return ToBigInteger(this);
+					#endif
                 }
             }
 

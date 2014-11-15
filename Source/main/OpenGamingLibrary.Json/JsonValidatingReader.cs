@@ -23,7 +23,9 @@
 
 using System;
 using System.Collections.Generic;
-using OpenGamingLibrary.Numerics;
+#if NET40
+using System.Numerics;
+#endif
 using OpenGamingLibrary.Json.Linq;
 using OpenGamingLibrary.Json.Schema;
 using OpenGamingLibrary.Json.Utilities;
@@ -725,6 +727,7 @@ namespace OpenGamingLibrary.Json
             if (schema.DivisibleBy != null)
             {
                 bool notDivisible;
+#if NET40
 				if (value is BigInteger) {
 					// not that this will lose any decimal point on DivisibleBy
 					// so manually raise an error if DivisibleBy is not an integer and value is not zero
@@ -737,7 +740,9 @@ namespace OpenGamingLibrary.Json
 						notDivisible = i % new BigInteger(schema.DivisibleBy.Value) != 0;
 					}
 				}
-				else {
+				else
+#endif
+				{
 					notDivisible = !IsZero(Convert.ToInt64(value, CultureInfo.InvariantCulture) % schema.DivisibleBy.Value);
 				}
 
