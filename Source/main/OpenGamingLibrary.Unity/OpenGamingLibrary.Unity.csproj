@@ -35,6 +35,8 @@
     <Compile Include="ComposableUnityContext.cs" />
     <Compile Include="ContainerAwareBehaviour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialPlatforms\ISocialPlatformAdapter.cs" />
+    <Compile Include="SocialPlatforms\IMultiplayerClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEditor">
@@ -119,6 +121,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="UI\" />
+    <Folder Include="SocialPlatforms\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenGamingLibrary.Ioc\OpenGamingLibrary.Ioc.csproj">
